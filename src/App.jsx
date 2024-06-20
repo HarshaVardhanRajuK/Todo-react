@@ -6,6 +6,7 @@ import { MdEditDocument } from "react-icons/md";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   let [todo, setTodo] = useState("");
@@ -65,7 +66,7 @@ const App = () => {
   return (
     <div className="min-h-[100vh] bg-[#9AC8CD]">
       <Navbar />
-      <div className="min-h-[88vh] flex flex-col items-center gap-8 p-10">
+      <div className="min-h-[88vh] flex flex-col items-center gap-8 py-10 px-2">
         <h1 className="text-2xl md:text-4xl font-bold">Add Your TODOs</h1>
         <div className="flex">
           <input
@@ -75,7 +76,7 @@ const App = () => {
             id="userinput"
             type="text"
             value={todo}
-            className="font-[500] w-[270px] md:w-[500px] p-2 rounded-md focus:outline-blue-600 mr-1 text-center"
+            className="font-[500] w-[280px] md:w-[500px] p-2 rounded-md focus:outline-blue-600 mr-1 text-center"
             placeholder="Create Your Task, press ↵ or save"
             onKeyUp={(e)=>{
               if (e.key === "Enter") {
@@ -126,9 +127,9 @@ const App = () => {
               (showFinished || !item.isCompleted) && (
                 <div
                   key={item.id}
-                  className="todo p-2 w-[80%] bg-[#E1F7F5] flex justify-between my-1 rounded-md"
+                  className="todo p-2 w-[90%] md:w-[80%] bg-[#E1F7F5] flex justify-between my-1 rounded-md"
                 >
-                  <div className="flex">
+                  <div className="flex items-center gap-2">
                     <input
                       id={item.id}
                       name={item.id}
@@ -137,28 +138,28 @@ const App = () => {
                       onChange={(e) => {
                         handlecheckbox(e);
                       }}
-                      className="cursor-pointer w-5"
+                      className="cursor-pointer"
                     />
 
                     <label
                       htmlFor={item.id}
                       className={
                         item.isCompleted
-                          ? "ml-2 flex justify-center items-center text-lg font-semibold line-through"
-                          : "ml-2 flex justify-center items-center text-lg font-semibold"
+                          ? " flex justify-center items-center cursor-pointer md:text-lg font-semibold line-through"
+                          : " flex justify-center items-center cursor-pointer md:text-lg font-semibold"
                       }
                     >
                       {item.todo}
                     </label>
                   </div>
 
-                  <div>
+                  <div className="flex justify-center items-center gap-1 md:gap-2">
                     <button
                       name={item.id}
                       onClick={() => {
                         handleEdit(item.id);
                       }}
-                      className="bg-slate-500 p-2 mr-2 rounded-md font-semibold text-white"
+                      className="bg-slate-500 p-2 rounded-md font-semibold text-white"
                     >
                       <MdEditDocument />
                     </button>
@@ -178,6 +179,7 @@ const App = () => {
           })}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
