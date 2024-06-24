@@ -22,6 +22,7 @@ const App = () => {
 
   let [error, setError] = useState(false);
 
+
   // useEffect(() => {
   //   if (Notification.permission === "denied") {
   //     Notification.requestPermission().then((res) => console.log(res));
@@ -29,6 +30,7 @@ const App = () => {
   // }, []);
 
   useEffect(() => {
+    document.getElementById("userinput").focus()
     localStorage.setItem("todos", JSON.stringify(todos));
 
     // todos.forEach((todo) => {
@@ -77,6 +79,8 @@ const App = () => {
     let newTodos = todos.filter((i) => i.id !== id);
 
     setTodos(newTodos);
+
+    document.getElementById("userinput").focus()
   }
 
   function handleSave() {
@@ -93,7 +97,6 @@ const App = () => {
       let [h, m] = time.split(":");
 
       let givendate = new Date(y, M - 1, d, h, m);
-
 
       if (givendate - createdAt < 0) {
         setError(true);
@@ -127,6 +130,7 @@ const App = () => {
         <h1 className="text-2xl md:text-3xl font-bold mb-4">Add Your TODOs</h1>
         <div className="flex mb-2">
           <input
+            ref={inputEle}
             onChange={(e) => {
               setTodo(e.target.value);
             }}
@@ -150,7 +154,7 @@ const App = () => {
             Due date:{" "}
           </label>
           <input
-            className="mr-1 rounded-sm text-[14px] px-2"
+            className="rounded-sm text-[14px] px-2"
             type="datetime-local"
             name=""
             id=""
@@ -264,7 +268,9 @@ const App = () => {
                       {" "}
                       Due date:{" "}
                       <span className="text-blue-500">
-                        {item.duedate ? new Date(item.duedate).toLocaleString() : "No due date"}
+                        {item.duedate
+                          ? new Date(item.duedate).toLocaleString()
+                          : "No due date"}
                       </span>
                     </div>
                   </div>
