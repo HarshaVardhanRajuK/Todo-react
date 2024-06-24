@@ -30,7 +30,6 @@ const App = () => {
   // }, []);
 
   useEffect(() => {
-    document.getElementById("userinput").focus()
     localStorage.setItem("todos", JSON.stringify(todos));
 
     // todos.forEach((todo) => {
@@ -130,7 +129,6 @@ const App = () => {
         <h1 className="text-2xl md:text-3xl font-bold mb-4">Add Your TODOs</h1>
         <div className="flex mb-2">
           <input
-            ref={inputEle}
             onChange={(e) => {
               setTodo(e.target.value);
             }}
